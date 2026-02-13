@@ -1,0 +1,15 @@
+[project]
+name = "pig-plugin-tsperson"
+version = "3.0.0"
+description = "TeamSpeak 在线人数查询插件"
+authors = [{name = "pwaurora"}]
+requires-python = ">=3.10"
+dependencies = [
+    "pigsender-plugin-sdk",
+    "ts3",
+    "Pillow",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.backends._legacy:_Backend"
