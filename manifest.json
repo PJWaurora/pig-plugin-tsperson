@@ -1,0 +1,81 @@
+{
+  "name": "tsperson",
+  "display_name": "TS在线查询",
+  "version": "3.0.0",
+  "description": "查询TeamSpeak服务器在线人数，支持定时轮询进出通知",
+  "author": "pwaurora",
+  "enabled": true,
+  "main_class": "TSPersonModule",
+  "main_file": "tsperson.py",
+  "dependencies": [
+    "ts3",
+    "Pillow"
+  ],
+  "permissions": [
+    "send_image"
+  ],
+  "triggers": [
+    "@bot",
+    "查询人数",
+    "查询人类",
+    "ts状态",
+    "ts通知开",
+    "ts通知关"
+  ],
+  "help": {
+    "commands": [
+      { "cmd": "@我 查询人数", "desc": "查询 TS 当前在线人数" },
+      { "cmd": "@我 查询人类", "desc": "同上" },
+      { "cmd": "@我 ts状态", "desc": "查询 TS 服务器详细状态" },
+      { "cmd": "@我 ts通知开", "desc": "开启本群进出通知" },
+      { "cmd": "@我 ts通知关", "desc": "关闭本群进出通知" }
+    ],
+    "footer": "数据定时轮询"
+  },
+  "has_config": true,
+  "config_schema": {
+    "enable": {
+      "type": "boolean",
+      "label": "启用模块",
+      "default": true,
+      "description": "是否启用TS查询功能"
+    },
+    "host": {
+      "type": "string",
+      "label": "服务器地址",
+      "default": "",
+      "description": "TeamSpeak服务器地址",
+      "required": true
+    },
+    "poll_interval": {
+      "type": "number",
+      "label": "轮询间隔(秒)",
+      "default": 60,
+      "description": "定时查询服务器在线人数的间隔秒数"
+    },
+    "enable_notify": {
+      "type": "boolean",
+      "label": "启用进出通知",
+      "default": true,
+      "description": "是否启用用户进出服务器的自动通知"
+    },
+    "notify_groups": {
+      "type": "array",
+      "label": "通知群列表",
+      "default": [],
+      "description": "接收进出通知的QQ群号列表",
+      "items": { "type": "number" }
+    },
+    "serverQuery": {
+      "type": "object",
+      "label": "ServerQuery配置",
+      "description": "ServerQuery连接配置",
+      "properties": {
+        "port": { "type": "string", "label": "端口", "default": "10011" },
+        "client_id": { "type": "string", "label": "用户名", "default": "" },
+        "client_password": { "type": "string", "label": "密码", "default": "", "secret": true },
+        "virtual_server_id": { "type": "number", "label": "虚拟服务器ID", "default": 1 }
+      }
+    }
+  }
+}
